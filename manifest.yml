@@ -1,0 +1,40 @@
+services:
+  gateway:
+    image: rajlodhi09/yourbeep:gateway-latest
+    container_name: yourbeep-gateway
+    restart: unless-stopped
+    ports:
+      - "4000:4000"
+    env_file:
+      - .env
+
+  identity:
+    image: rajlodhi09/yourbeep:identity-latest
+    container_name: yourbeep-identity
+    restart: unless-stopped
+    ports:
+      - "4001:4001"
+    env_file:
+      - .env
+
+  content:
+    image: rajlodhi09/yourbeep:content-latest
+    container_name: yourbeep-content
+    restart: unless-stopped
+    ports:
+      - "4002:4002"
+    env_file:
+      - .env
+
+  commerce:
+    image: rajlodhi09/yourbeep:commerce-latest
+    container_name: yourbeep-commerce
+    restart: unless-stopped
+    ports:
+      - "4003:4003"
+    env_file:
+      - .env
+
+# Atlas is used as the production database.
+# Set MONGODB_URI_IDENTITY, MONGODB_URI_CONTENT, and MONGODB_URI_COMMERCE
+# in the deployment environment instead of running a local mongo container.
